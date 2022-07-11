@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Трек</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Трек</th>
+        <th>Альбом</th>
+        <th>Тип носителя</th>
+        <th>Жанр</th>
+        <th>Композитор</th>
+        <th>Длительность</th>
+        <th>Вес</th>
+        <th>Цена</th>
+    </tr>
+    </thead>
+    <tbody>
+        <td th:text="${track.id}"/>
+        <td th:text="${track.name}"/>
+        <td><a th:href="@{'/album?id=' + ${track.album.id}}" th:text="${track.album.title}" /></td>
+        <td th:text="${track.mediaType.name}"/>
+        <td><a th:href="@{'/genre?id=' + ${track.genre.id}}" th:text="${track.genre.name}" /></td>
+        <td th:text="${track.composer}"/>
+        <td>
+            <span th:if="${track.duration/1000%60 < 10}" th:text="${track.duration/60000 + ':0' + track.duration/1000%60}" />
+            <span th:unless="${track.duration/1000%60 < 10}" th:text="${track.duration/60000 + ':' + track.duration/1000%60}" />
+        </td>
+        <td>
+            <span th:if="${track.sizeByte < 1024}" th:text="${track.sizeByte + ' bytes'}"></span>
+            <span th:if="${track.sizeByte < 1024 * 1024}" th:text="${#numbers.formatDecimal((track.sizeByte * 1.0)/(1024), 0, 3) + ' KB'}"></span>
+            <span th:if="${track.sizeByte < 1024 * 1024 * 1024}" th:text="${#numbers.formatDecimal((track.sizeByte * 1.0)/(1024 * 1024), 0, 3) + ' MB'}"></span>
+        </td>
+        <td th:text="${track.unitPrice + ' $'}"/>
+    </tbody>
+</table>
+
+<form th:action="@{/tracks}" method="get">
+    <div><input type="submit" value="Обратно к выбору треков"/></div>
+</form>
+
+</body>
+</html>

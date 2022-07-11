@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Треки жанра</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2 th:text="${genre.name}" />
+
+    <form th:action="@{/genre}" method="get">
+        <p>
+            <select name="id" >
+                <option disabled>Выберите жанр</option>
+                <th:block th:each="gen : ${genres}">
+                    <option th:value="${gen.id}" th:text="${gen.name}" ></option>
+                </th:block>
+            </select>
+        </p>
+        <div>
+            <input type="submit" value="выбрать жанр" >
+        </div>
+    </form>
+
+    <form th:action="@{/tracks}" method="get">
+        <div><input type="submit" value="Обратно к выбору треков"/></div>
+    </form>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Трек</th>
+            <th>Альбом</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="track : ${genre.tracks}">
+            <td th:text="${track.id}"/>
+            <td><a th:href="@{'/track?id=' + ${track.id}}" th:text="${track.name}"/></td>
+            <td><a th:href="@{'/album?id=' + ${track.album.id}}" th:text="${track.album.title}" /></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+</body>
+</html>
