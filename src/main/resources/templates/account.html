@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Аккаунт</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>First Name</th>
+                <th><a th:text="${user.customer.firstName}" /></th>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <th><a th:text="${user.customer.lastName}" /></th>
+            </tr>
+            <tr>
+                <th>Company</th>
+                <th><a th:text="${user.customer.company}" /></th>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <th><a th:text="${user.customer.address}" /></th>
+            </tr>
+            <tr>
+                <th>City</th>
+                <th><a th:text="${user.customer.city}" /></th>
+            </tr>
+            <tr>
+                <th>State</th>
+                <th><a th:text="${user.customer.state}" /></th>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <th><a th:text="${user.customer.country}" /></th>
+            </tr>
+            <tr>
+                <th>Postal code</th>
+                <th><a th:text="${user.customer.postalCode}" /></th>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <th><a th:text="${user.customer.phone}" /></th>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <th><a th:text="${user.customer.email}" /></th>
+            </tr>
+        </tbody>
+    </table>
+    <form th:action="@{/confirmation}" method="get">
+        <div><input type="submit" value="Изменение данных"/></div>
+    </form>
+    <form th:action="@{/}" method="get">
+        <div><input type="submit" value="На главную"/></div>
+    </form>
+</div>
+
+</body>
+</html>

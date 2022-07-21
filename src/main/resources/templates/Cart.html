@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Треки жанра</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2 th:text="Корзина" />
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Трек</th>
+            <th>Цена</th>
+            <th>Удалить из корзины</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="track : ${cart.buyTracks}">
+            <td th:text="${track.name}" />
+            <td th:text="${track.unitPrice}" />
+            <td><a th:href="@{'/deltrack?id=' + ${track.id}}" th:text="Удалить" /></td>
+        </tr>
+        <tr>
+            <td th:text="Сумма" />
+            <td th:text="${sum}" />
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<form th:action="@{/}" method="get">
+    <div><input type="submit" value="На главную"/></div>
+</form>
+<form th:action="@{/acceptOrder}" method="get">
+    <div><input type="submit" value="Сделать заказ"/></div>
+</form>
+
+</body>
+</html>

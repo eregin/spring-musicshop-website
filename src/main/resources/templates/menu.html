@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Меню</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td> Меню </td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr><td><a th:href="@{'/tracks'}" th:text="'К списку треков'" /></td></tr>
+            <tr><td><a th:href="@{'/albums'}" th:text="'К списку исполнителей'" /></td></tr>
+            <tr><td><a th:href="@{'/account'}" th:text="'В личный кабинет'" /></td></tr>
+            <tr><td><a th:href="@{'/cart'}" th:text="'В корзину'" /></td></tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

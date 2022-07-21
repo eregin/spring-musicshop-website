@@ -49,6 +49,25 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.security</groupId>-->
+<!--			<artifactId>spring-security-taglibs</artifactId>-->
+<!--			<version>5.2.0.RELEASE</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-devtools</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>javax.servlet</groupId>-->
+<!--			<artifactId>jstl</artifactId>-->
+<!--			<version>1.2</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>javax.validation</groupId>-->
+<!--			<artifactId>validation-api</artifactId>-->
+<!--		</dependency>-->
+
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -59,10 +78,26 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>5.2.4</version>
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/postgres?currentSchema=shop</url>
+					<user>postgres</user>
+					<password>12345</password>
+					<schemas>
+						<schema>shop</schema>
+					</schemas>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>

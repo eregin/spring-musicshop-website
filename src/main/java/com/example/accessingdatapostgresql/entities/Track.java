@@ -26,15 +26,6 @@ public class Track {
     @JoinColumn(name="genreid", nullable=false)
     private Genre genre;
 
-//    @OneToMany(mappedBy = "track", fetch = FetchType.LAZY)
-//    private List<SalesItems> salesItems;
-//
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "playlist_track",
-//            joinColumns = @JoinColumn(name = "TrackId"),
-//            inverseJoinColumns = @JoinColumn(name = "PlaylistId"))
-//    private List<Playlist> playlistsWith;
-
     @Column(name = "composer")
     private String composer;
 
@@ -46,6 +37,12 @@ public class Track {
 
     @Column(name = "unitprice")
     private Double unitPrice;
+
+    @ManyToMany
+    @JoinTable(name = "sales_items",
+            joinColumns = @JoinColumn(name = "track_id"),
+            inverseJoinColumns = @JoinColumn(name = "sale_id"))
+    private List<Sale> sales;
 
     ///////////////////////////////////
     public int getId() {
@@ -64,13 +61,13 @@ public class Track {
         return name;
     }
 
-//    public List<SalesItems> getSalesItems() {
-//        return salesItems;
-//    }
-//
-//    public void setSalesItems(List<SalesItems> salesItems) {
-//        this.salesItems = salesItems;
-//    }
+    public List<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<Sale> sales) {
+        this.sales = sales;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -95,14 +92,6 @@ public class Track {
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
-
-//    public List<Playlist> getPlaylistsWith() {
-//        return playlistsWith;
-//    }
-//
-//    public void setPlaylistsWith(List<Playlist> playlistsWith) {
-//        this.playlistsWith = playlistsWith;
-//    }
 
     public String getComposer() {
         return composer;

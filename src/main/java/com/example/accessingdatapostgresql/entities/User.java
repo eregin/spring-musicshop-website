@@ -15,15 +15,19 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
     @Column(name = "username")
     private String username;
-
     @Column(name = "password", length = 500)
     private String password;
+    @Column(name = "isActive")
+    private boolean isActive;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+/////////////////////////////////////////////////
     public User() {
     }
 
@@ -31,6 +35,7 @@ public class User implements UserDetails {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.isActive = false;
     }
 
     public Long getId() {
@@ -70,7 +75,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
@@ -85,11 +89,27 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
